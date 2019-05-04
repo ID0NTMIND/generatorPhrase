@@ -1,6 +1,6 @@
 var canvas = document.createElement('canvas');
 canvas.id = "collage";
-canvas.wigth = 400;
+canvas.width = 400;
 canvas.height = 400;
 canvas.style.border = "1px solid grey";
 canvas.style.margin = "auto";
@@ -47,19 +47,27 @@ var xhr = new XMLHttpRequest();
 xhr.open("GET", 'https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=text&lang=ru', true);
 xhr.onload = function() {
     var text = xhr.responseText;
-    console.log(text);
+    var words = text.split(" ");
+    var countWords = words.length;
     window.onload = function() {
-        ctx.font = "bold 20pt Comic Sans MS";
+        ctx.font = "bold 16pt Comic Sans MS";
         ctx.fillStyle = "white";
-        ctx.textAlign = "center";
-        ctx.fillText(text, 200, 200);
+        var marginLeft = 20;
+        var marginTop = 170;
+        var lineHeight = 25;
+        var line = "";
+        for (var n = 0; n < countWords; n++) {
+            var testLine = line + words[n] + " ";
+            var testWidth = ctx.measureText(testLine).width;
+            if (testWidth > 390) {
+                ctx.fillText(line, marginLeft, marginTop);
+                line = words[n] + " ";
+                marginTop += lineHeight;
+            } else {
+                line = testLine;
+            }
+        }
+        ctx.fillText(line, marginLeft, marginTop);
     };
 }
 xhr.send(null);
-
-/*window.onload = function() {
-    ctx.font = "bold 20pt Comic Sans MS";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center";
-    ctx.fillText("HellYeah", 150, 200);
-};*/
