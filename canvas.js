@@ -1,8 +1,8 @@
 var canvas = document.createElement('canvas');
 canvas.id = "collage";
-canvas.width = 400;
-canvas.height = 400;
-canvas.style.border = "1px solid grey";
+canvas.width = 500;
+canvas.height = 500;
+canvas.style.border = "1px solid black";
 canvas.style.margin = "auto";
 canvas.style.display = "block";
 document.body.appendChild(canvas);
@@ -16,12 +16,12 @@ img1.crossOrigin = 'anonymous';
 img2.crossOrigin = 'anonymous';
 img3.crossOrigin = 'anonymous';
 img4.crossOrigin = 'anonymous';
-var rand_x = Math.floor(Math.random() * 100 + 100);
-var rand_y = Math.floor(Math.random() * 100 + 100);
-img1.src = 'https://source.unsplash.com/collection/1127165/' + rand_x + 'x' + rand_y;
-img2.src = 'https://source.unsplash.com/collection/1127168/' + (400 - rand_x) + 'x' + (400 - rand_y);
-img3.src = 'https://source.unsplash.com/collection/1127166/' + rand_x + 'x' + (400 - rand_y);
-img4.src = 'https://source.unsplash.com/collection/1127163/' + (400 - rand_x) + 'x' + rand_y
+var rand_x = Math.floor(Math.random() * 200 + 100);
+var rand_y = Math.floor(Math.random() * 200 + 100);
+img1.src = 'https://source.unsplash.com/random/' + rand_x + 'x' + rand_y;
+img2.src = 'https://source.unsplash.com/random/' + (500 - rand_x) + 'x' + (500 - rand_y);
+img3.src = 'https://source.unsplash.com/random/' + rand_x + 'x' + (500 - rand_y);
+img4.src = 'https://source.unsplash.com/random/' + (500 - rand_x) + 'x' + rand_y;
 img1.onload = function() { ctx.drawImage(img1, 0, 0); }
 img2.onload = function() { ctx.drawImage(img2, rand_x, rand_y); }
 img3.onload = function() { ctx.drawImage(img3, 0, rand_y); }
@@ -52,14 +52,14 @@ xhr.onload = function() {
     window.onload = function() {
         ctx.font = "bold 16pt Comic Sans MS";
         ctx.fillStyle = "white";
-        var marginLeft = 20;
+        var marginLeft = 30;
         var marginTop = 170;
-        var lineHeight = 25;
+        var lineHeight = 30;
         var line = "";
         for (var n = 0; n < countWords; n++) {
             var testLine = line + words[n] + " ";
             var testWidth = ctx.measureText(testLine).width;
-            if (testWidth > 390) {
+            if (testWidth > 450) {
                 ctx.fillText(line, marginLeft, marginTop);
                 line = words[n] + " ";
                 marginTop += lineHeight;
