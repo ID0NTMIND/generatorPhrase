@@ -41,4 +41,19 @@ ref.addEventListener('click', function(e) {
 })
 button.style.margin = "auto";
 button.style.display = "block";
-button.style.marginTop = "40px"
+button.style.marginTop = "40px";
+
+var xhr = new XMLHttpRequest();
+var text;
+var body = 'method=getQuote&format=text&lang=ru';
+xhr.open("POST", 'http://api.forismatic.com/api/1.0/?' + body, true);
+xhr.send(text);
+console.log(text);
+
+
+window.onload = function() {
+    ctx.font = "bold 20pt Comic Sans MS";
+    ctx.fillStyle = "white";
+    ctx.textAlign = "center";
+    ctx.fillText(text, 200, 200);
+};
