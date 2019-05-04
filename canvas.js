@@ -1,0 +1,10 @@
+var canvas = document.createElement('canvas');
+canvas.id = "collage";
+canvas.wigth = 500;
+canvas.height = 500;
+canvas.style.border = "1px solid grey";
+canvas.style.margin = "auto";
+canvas.style.display = "block";
+document.body.appendChild(canvas);
+var elem = document.getElementById("collage");
+var ctx = canvas.getContext("2d");
