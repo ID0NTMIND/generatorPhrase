@@ -18,10 +18,10 @@ img3.crossOrigin = 'anonymous';
 img4.crossOrigin = 'anonymous';
 var rand_x = Math.floor(Math.random() * 100 + 100);
 var rand_y = Math.floor(Math.random() * 100 + 100);
-img1.src = 'http://source.unsplash.com/collection/1127165/' + rand_x + 'x' + rand_y;
-img2.src = 'http://source.unsplash.com/collection/1127168/' + (400 - rand_x) + 'x' + (400 - rand_y);
-img3.src = 'http://source.unsplash.com/collection/1127166/' + rand_x + 'x' + (400 - rand_y);
-img4.src = 'http://source.unsplash.com/collection/1127163/' + (400 - rand_x) + 'x' + rand_y
+img1.src = 'https://source.unsplash.com/collection/1127165/' + rand_x + 'x' + rand_y;
+img2.src = 'https://source.unsplash.com/collection/1127168/' + (400 - rand_x) + 'x' + (400 - rand_y);
+img3.src = 'https://source.unsplash.com/collection/1127166/' + rand_x + 'x' + (400 - rand_y);
+img4.src = 'https://source.unsplash.com/collection/1127163/' + (400 - rand_x) + 'x' + rand_y
 img1.onload = function() { ctx.drawImage(img1, 0, 0); }
 img2.onload = function() { ctx.drawImage(img2, rand_x, rand_y); }
 img3.onload = function() { ctx.drawImage(img3, 0, rand_y); }
@@ -44,15 +44,22 @@ button.style.display = "block";
 button.style.marginTop = "40px";
 
 var xhr = new XMLHttpRequest();
-xhr.open("GET", 'cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=xml&lang=ru', true);
-xhr.setRequestHeader("Access-Control-Allow-Origin", "*");
-xhr.setRequestHeader("Content-type", "text/xml");
-xhr.send();
+xhr.open("GET", 'https://cors-anywhere.herokuapp.com/https://api.forismatic.com/api/1.0/?method=getQuote&format=text&lang=ru', true);
+xhr.onload = function() {
+    var text = xhr.responseText;
+    console.log(text);
+    window.onload = function() {
+        ctx.font = "bold 20pt Comic Sans MS";
+        ctx.fillStyle = "white";
+        ctx.textAlign = "center";
+        ctx.fillText(text, 200, 200);
+    };
+}
+xhr.send(null);
 
-
-window.onload = function() {
+/*window.onload = function() {
     ctx.font = "bold 20pt Comic Sans MS";
     ctx.fillStyle = "white";
     ctx.textAlign = "center";
     ctx.fillText("HellYeah", 150, 200);
-};
+};*/
